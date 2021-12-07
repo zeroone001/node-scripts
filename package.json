@@ -1,0 +1,29 @@
+{
+  "name": "my-scripts",
+  "version": "1.0.0",
+  "description": "node 的一些工具小脚本，用于练习node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "my-scripts": "bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeroone001/node-scripts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zeroone001/node-scripts/issues"
+  },
+  "homepage": "https://github.com/zeroone001/node-scripts#readme",
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "child_process": "^1.0.2",
+    "enquirer": "^2.3.6",
+    "execa": "^4.1.0",
+    "minimist": "^1.2.5"
+  }
+}
