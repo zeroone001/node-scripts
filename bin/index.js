@@ -5,6 +5,11 @@ const chalk = require('chalk');
 
 const child_process = require('child_process');
 
+/* 
+  交互式询问用户输入
+  https://github.com/enquirer/enquirer
+*/
+const { prompt } = require('enquirer');
 /* 命令行参数
      其中process.argv的第一和第二个元素是Node可执行文件和被执行JavaScript文件的完全限定的文件系统路径，
   无论你是否这样输入他们
@@ -27,11 +32,9 @@ const path = require('path');
 const projectPath = path.resolve(__dirname, '../');
 console.log(chalk.blue(`--->: ${projectPath}`));
 /* 获取要删除的分支名的部分字符串 */
-const branchStr = args.branch;
-if (!branchStr) {
-  console.log(chalk.red(`请使用正确的命令-----> my-scripts --branch=feature`));
-  return;
-}
+let branchStr = args.branch;
+let responseBranch;
+
 /* 
   run 真实在终端跑命令，比如 yarn build --release
   使用 child_process 依赖也可以
@@ -46,6 +49,16 @@ const command = (com) => {
   return execa.command(com);
 }
 async function searchAndDeleteBranchs (projectPath, branchStr) {
+  if (!branchStr) {
+    // console.log(chalk.red(`请使用正确的命令-----> my-scripts --branch=feature`));
+    // return;
+    responseBranch = await prompt({
+      type: 'input',
+      name: 'branch',
+      message: '请输出要删除的分支中的字符串？'
+    });
+    branchStr = responseBranch.branch;
+  }
   console.log(chalk.yellow('查询本地git分支：'));
   /* 执行git branch 命令 */
   const { stdout } = await command('git branch');
