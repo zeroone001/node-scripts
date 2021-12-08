@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "my-scripts": "bin/index.js"
+    "my-scripts": "bin/index.js",
+    "my-commit": "bin/commit.js"
   },
   "repository": {
     "type": "git",
