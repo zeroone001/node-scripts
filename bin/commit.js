@@ -53,7 +53,7 @@ async function main () {
         const targetDemand = matchArr ? matchArr[1] : 'APP-000000';
         
         step(`\ngit commit -m '${targetDemand}: ${message}'`);
-        await run('git', ['commit', '-m', `${targetDemand}: ${message}`]);
+        await run('git', ['commit', '-m', `${targetDemand}:  ${message}`]);
         /* 
             确认是否push
         */
