@@ -55,7 +55,7 @@ async function searchAndDeleteBranchs (projectPath, branchStr) {
     responseBranch = await prompt({
       type: 'input',
       name: 'branch',
-      message: '请输出要删除的分支中的字符串？'
+      message: '请输入要删除的分支中的字符串？'
     });
     branchStr = responseBranch.branch;
   }
@@ -77,8 +77,21 @@ async function searchAndDeleteBranchs (projectPath, branchStr) {
     return;
   }
   
-  console.log(chalk.green(`\n分支查询完成，开始删除字符串为 ${branchStr} 的分支, 一共 ${delBranch.length} 个...\n`));
+  console.log(chalk.green(`\n分支查询完成，删除字符串为 ${branchStr} 的分支, 一共 ${delBranch.length} 个...\n`));
 
+  /* 
+    确认是否删除
+  */
+  const { isDelete } = await prompt({
+    type: 'select',
+    name: 'isDelete',
+    message: '请确定是否删除分支?',
+    choices: ['Y', 'N']
+  })
+  /* 如果选择了否，就退出 */
+  if(isDelete === 'N') {
+    return;
+  }
   /* 2. 执行删除命令 这里不能用forEach 循环 */
   // delBranch.forEach((item) => {
   //   await command(`git branch -D ${item}`);
