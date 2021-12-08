@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// console.log(12312312);
 /* 终端多色彩输出 */
 const chalk = require('chalk');
 
@@ -11,7 +10,7 @@ const child_process = require('child_process');
 */
 const { prompt } = require('enquirer');
 /* 命令行参数
-     其中process.argv的第一和第二个元素是Node可执行文件和被执行JavaScript文件的完全限定的文件系统路径，
+  其中process.argv的第一和第二个元素是Node可执行文件和被执行JavaScript文件的完全限定的文件系统路径，
   无论你是否这样输入他们
   $ node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz
 { _: [ 'foo', 'bar', 'baz' ],
@@ -48,6 +47,7 @@ const run = (bin, args, opts = {}) =>
 const command = (com) => {
   return execa.command(com);
 }
+/* 主函数 */
 async function searchAndDeleteBranchs (projectPath, branchStr) {
   if (!branchStr) {
     // console.log(chalk.red(`请使用正确的命令-----> my-scripts --branch=feature`));
@@ -101,7 +101,8 @@ async function searchAndDeleteBranchs (projectPath, branchStr) {
     await command(`git branch -D ${item}`);
   }))
   console.log(chalk.green('\n删除完成!'));
-  /* 查询剩余分支 */
+
+  /* END 查询剩余分支 */
   console.log(chalk.green('\n剩余本地分支:'));
   const { stdout: lastStdout } = await command('git branch');
   console.log(chalk.green(`${lastStdout}`));
