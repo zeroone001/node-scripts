@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "lib",
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "outDir": "dist/lib",
+    "allowJs": true,
+    "strict": true,
+    "declaration": true,
+    "target": "es6",
+    "suppressImplicitAnyIndexErrors": true,
+  },
+  "include": ["lib"],
+}
